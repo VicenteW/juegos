@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>precio:</label>
+            <label>Plataforma:</label>
             <input type="text" class="form-control" v-model="games.plataforma"/>
           </div>
         </div>
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>exist:</label>
+            <label>Precio:</label>
             <input type="text" class="form-control" v-model="games.precio"/>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <div class="form-group">
 
           <button @click="updateGame()">
-              Update Product
+              Update Game
           </button>
         </div>
 
@@ -93,7 +93,7 @@ export default {
   methods: {
  
   getgames() {
-    axios.get('http://localhost:8080/api/juegos')
+    axios.get('http://35.225.62.24:8082/api/juegos')
     .then(response => {
       // JSON responses are automatically parsed.
       this.posts = response.data
@@ -104,10 +104,10 @@ export default {
   },
 
   getonegame(idgame) {
-    axios.get('http://localhost:8080/api/juegos/'+ idgame)
+    axios.get('http://35.225.62.24:8082/api/juegos/'+ idgame)
     .then(response => {
       // JSON responses are automatically parsed.
-      this.product = response.data
+      this.games = response.data
       alert("status: " + response.status + ", selected: " + JSON.stringify(response.data));
 
     })
@@ -118,7 +118,7 @@ export default {
 
   addGame() {
     alert(this.games.nombre + this.games.plataforma + this.games.precio);
-    axios.post('http://localhost:8080/api/juegos',  this.games)
+    axios.post('http://35.225.62.24:8082/api/juegos',  this.games)
     .then(response => {
       alert("status: " + response.status + ", inserted: " + JSON.stringify(response.data));
     })
@@ -129,8 +129,8 @@ export default {
   
   updateGame() {
     //alert(idgame);
-    alert(this.game.id);
-    axios.put('http://localhost:8080/api/juegos/' + this.games.id,  this.game)
+    alert(this.games.id);
+    axios.put('http://35.225.62.24:8082/api/juegos/' + this.games.id,  this.games)
     .then(response => {
       alert("status: " + response.status + ", updated: " + JSON.stringify(response.data));
       this.getgames();
@@ -145,7 +145,7 @@ export default {
   deleteGame(idgame) {
     alert("delete" + idgame);
     
-    axios.delete('http://localhost:8080/api/juegos/' + idgame)
+    axios.delete('http://35.225.62.24:8082/api/juegos/' + idgame)
     .then(response => {
 
       alert("status: " + response.status + ", deleted: " + JSON.stringify(response.data));

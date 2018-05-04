@@ -3,7 +3,7 @@
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres://vicente:euni6252@localhost:5432/Juegos');
+const sequelize = new Sequelize('postgres://vicente:euni6252@35.225.62.24:5432/juegos');
 sequelize
   .authenticate()
   .then(() => {
@@ -98,7 +98,7 @@ router.route('/juegos/:juegos_id')
  .get(function(req, res) {
 	
 	return Productos
-    .findById(req.params.product_id, {
+    .findById(req.params.juegos_id, {
     })
     .then(myproduct => {
       if (!myproduct) {
@@ -117,7 +117,7 @@ router.route('/juegos/:juegos_id')
 
  .put(function (req, res) {
 	 return Productos
-    .findById(req.params.product_id, {
+    .findById(req.params.juegos_id, {
     })
     .then(myproduct => {
       if (!myproduct) {
@@ -142,7 +142,7 @@ router.route('/juegos/:juegos_id')
  // http://localhost:8080/api/products/:product_id
  .delete(function (req, res) {
 	return Productos
-    .findById(req.params.product_id)
+    .findById(req.params.juegos_id)
     .then(myproduct => {
       if (!myproduct) {
         return res.status(400).send({
